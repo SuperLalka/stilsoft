@@ -8,3 +8,9 @@ TRANSPORT_TYPE = [
 ]
 
 TRANSPORT_TYPE_LIST = ['air', 'bus', 'tbus', 'train', 'tram']
+
+USER_GROUP = [
+    ('passenger', 'Passenger'),
+    ('driver', 'Driver'),
+    ('admin', 'Admin'),
+]
