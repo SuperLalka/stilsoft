@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 from stilsoft_test import constants
 
@@ -35,3 +36,11 @@ class Transport(models.Model):
     class Meta:
         verbose_name = 'Transport'
         verbose_name_plural = 'Transports'
+
+
+class User(AbstractUser):
+    user_group = models.CharField(max_length=10, choices=constants.USER_GROUP,
+                                  help_text='Select user group', default='Passenger')
+
+    def check_group(self, group):
+        return group is self.user_group
