@@ -19,6 +19,9 @@ class Route(models.Model):
     def __str__(self):
         return '{0} / {1}'.format(self.route_type, self.number)
 
+    def get_route_transports(self):
+        return self.transports.all()
+
     class Meta:
         verbose_name = 'Route'
         verbose_name_plural = 'Routes'
