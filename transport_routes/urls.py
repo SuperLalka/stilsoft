@@ -13,4 +13,5 @@ routerAPI.register(r'transports', views.TransportViewSet, basename='transports')
 app_name = 'transport_routes'
 urlpatterns = [
     url(r'^api/', include(routerAPI.urls)),
+    url(r'^(?P<page>\d+)?', views.index, name='index'),
 ]
