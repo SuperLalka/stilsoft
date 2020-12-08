@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <header class="header">
+    <h2 class="header__title">Транспортные маршруты</h2>
+    <p class="header__text">Всего найдено {{ paginator.paginator.count }} маршрутов</p>
+    <p class="header__text">Показана страница {{ paginator.number }} из {{ paginator.paginator.num_pages }}</p>
+  </header>
+  <main class="main">
+    <div class="main__aside-block aside-block">
+      <a type="button" href="#footer"
+         class="aside-block__button-down btn btn-warning">Перейти вниз страницы</a>
+    </div>
+    <div class="main__routes-block">
+      <div class="main__routes-list">
+        {% for route in paginator.object_list %}
+          <div class="main__route-item card">
+            <div class="card-header">
+              <p>Номер маршрута {{ route.number }}</p>
+              <p>{% if route.is_active %}Действующий{% else %}На данный момент неактивен{% endif %}</p>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Тип маршрута - {{ route.get_route_type_display }}</p>
+            </div>
+            <div class="card-footer">
+              <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  На маршруте работает следующий транспорт:
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  {% for transport in route.get_route_transports %}
+                    <a class="dropdown-item" href="#">{{ transport.transport_type }}
+                      / {{ transport.vehicle_id_number }}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <a name="footer"></a>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        {% if paginator.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="{% url 'transport_routes:index' paginator.previous_page_number %}">Previous</a>
+          </li>
+        {% endif %}
+        {% for page in paginator.paginator.page_range %}
+          <li class="page-item">
+            <a class="page-link" href="{% url 'transport_routes:index' page %}">{{ page }}</a>
+          </li>
+        {% endfor %}
+        {% if paginator.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="{% url 'transport_routes:index' paginator.next_page_number %}">Next</a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </footer>
+{% endblock %}
