@@ -6,6 +6,7 @@ from stilsoft_test import constants
 ROUTE_TYPE = "Select the type of transport route"
 TRANSPORT_TYPE = "Select the type of transport"
 TRANSPORT_NUMBER = "Enter the board number of the vehicle"
+TRANSPORT_DESCRIPTION = "Enter a description of the transport"
 
 
 class Route(models.Model):
@@ -31,7 +32,7 @@ class Transport(models.Model):
     vehicle_id_number = models.PositiveIntegerField(default=None,
                                                     help_text=TRANSPORT_NUMBER,
                                                     null=True, blank=True)
-    description = models.CharField(max_length=100, help_text="Enter a description of the transport",
+    description = models.CharField(max_length=100, help_text=TRANSPORT_DESCRIPTION,
                                    null=True, blank=True)
     transport_type = models.CharField(max_length=5, choices=constants.TRANSPORT_TYPE,
                                       help_text=TRANSPORT_TYPE, default='bus')
