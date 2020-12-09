@@ -6,14 +6,16 @@ a:hover {
 }
 
 body {
-    background-color: lavender;
-    background-image: url(//www.vallecamonicacultura.it/wp-content/uploads/2020/05/3334702.jpg);
-    background-size: cover;
+    background-color: #f5f8fc;
 }
 
 .header {
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.40);
+    background-color: rgba(0, 0, 0, 0.70);
+    background-image: url(//www.setra.by/images/logo/background.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
     display: flex;
     flex-flow: column;
     justify-content: center;

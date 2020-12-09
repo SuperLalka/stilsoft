@@ -30,7 +30,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   {% for transport in route.get_route_transports %}
-                    <a class="dropdown-item" href="#">{{ transport.transport_type }}
+                    <a class="dropdown-item" href="#">{{ transport.get_transport_type_display }}
                       / {{ transport.vehicle_id_number }}</a>
                   {% endfor %}
                 </div>
